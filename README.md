@@ -83,6 +83,12 @@ claude mcp add --transport http ats-jobs "https://mcp.apify.com/?tools=anshumana
 }
 ```
 
+**Gemini CLI** (asks for the Apify token once and keeps it in the system keychain):
+
+```bash
+gemini extensions install https://github.com/AnshumanAtrey/ats-jobs-mcp
+```
+
 ## Prompts to try
 
 - Find remote data engineer jobs posted in the last 24 hours on Greenhouse and Lever.

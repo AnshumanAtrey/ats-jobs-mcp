@@ -1,0 +1,19 @@
+{
+  "name": "ats-jobs",
+  "version": "1.0.0",
+  "description": "Live jobs from Greenhouse, Lever, Workday, Ashby, SmartRecruiters, Workable, Cornerstone and Deel: search by title, location, remote and date, newest first. Pay per job through your Apify account.",
+  "mcpServers": {
+    "ats-jobs": {
+      "httpUrl": "https://mcp.apify.com/?tools=anshumanatrey/ashby-jobs-search,anshumanatrey/cornerstone-jobs-search,anshumanatrey/deel-jobs-search,anshumanatrey/greenhouse-jobs-search,anshumanatrey/lever-jobs-search,anshumanatrey/smartrecruiters-jobs-search,anshumanatrey/workable-job-search,anshumanatrey/workday-job-search",
+      "headers": { "Authorization": "Bearer ${APIFY_TOKEN}" }
+    }
+  },
+  "settings": [
+    {
+      "name": "Apify API token",
+      "description": "From Apify Console, Settings, API & Integrations. Searches bill to this account.",
+      "envVar": "APIFY_TOKEN",
+      "sensitive": true
+    }
+  ]
+}
