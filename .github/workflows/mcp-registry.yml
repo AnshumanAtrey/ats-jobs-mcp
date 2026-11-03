@@ -1,0 +1,34 @@
+name: MCP Registry
+
+# Lists server.json in the official MCP Registry (registry.modelcontextprotocol.io), which Glama,
+# PulseMCP and other directories read from. GitHub OIDC proves the io.github.AnshumanAtrey/*
+# namespace, so no secret is needed. The registry rejects a repeated version, so the patch number
+# is the workflow run number (the actor repos' CI does the same).
+on:
+  push:
+    branches: [main]
+    paths: [server.json, .github/workflows/mcp-registry.yml]
+  workflow_dispatch:
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Stamp the version
+        run: |
+          jq --arg run "$GITHUB_RUN_NUMBER" '.version = ((.version | split(".")[0:2] | join(".")) + "." + $run)' server.json > stamped.json
+          mv stamped.json server.json && cat server.json
+
+      - name: Install mcp-publisher
+        run: curl -sSfL https://github.com/modelcontextprotocol/registry/releases/download/v1.8.1/mcp-publisher_linux_amd64.tar.gz | tar xz mcp-publisher
+
+      - name: Publish to MCP Registry
+        run: |
+          ./mcp-publisher login github-oidc
+          ./mcp-publisher publish

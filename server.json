@@ -1,0 +1,23 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.AnshumanAtrey/ats-jobs-mcp",
+  "title": "ATS Jobs MCP: Greenhouse, Lever, Workday, Ashby + 4 more",
+  "description": "Live jobs from 8 applicant tracking systems: Greenhouse, Lever, Workday, Ashby and four more.",
+  "version": "1.0.0",
+  "websiteUrl": "https://actorly.atrey.dev/mcp/ats-jobs-mcp",
+  "repository": { "url": "https://github.com/AnshumanAtrey/ats-jobs-mcp", "source": "github" },
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://mcp.apify.com/?tools=anshumanatrey/ashby-jobs-search,anshumanatrey/cornerstone-jobs-search,anshumanatrey/deel-jobs-search,anshumanatrey/greenhouse-jobs-search,anshumanatrey/lever-jobs-search,anshumanatrey/smartrecruiters-jobs-search,anshumanatrey/workable-job-search,anshumanatrey/workday-job-search",
+      "headers": [
+        {
+          "name": "Authorization",
+          "description": "Apify API token, as 'Bearer <apify-api-token>'. Runs bill to this account.",
+          "isRequired": true,
+          "isSecret": true
+        }
+      ]
+    }
+  ]
+}
